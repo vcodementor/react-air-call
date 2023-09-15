@@ -25,43 +25,47 @@ const ActivityFeed = () => {
   }, []);
   
   const archiveAllActivities  = () => {
-    // Object.entries(callActivities).map(([date,CallActivity]) =>  {
-    //   let callActivityId = CallActivity.id;
-    //   fetch(`https://cerulean-marlin-wig.cyclic.app/activities/${callActivityId}`,{
-    //     headers: {
-    //       Accept: "application/json",
-    //       "Content-Type": "application/json"
-    //     },
-    //     method: "PATCH",	
-    //     body: JSON.stringify({
-    //       'is_archived': true
-    //     })
-    //   })
-    //   .then((res) => res.json())
-    //   .then((json) => {
-    //   });
-    // });
+    Object.entries(callActivities).map(([date,dateCallActivities]) =>  {
+      Object.entries(dateCallActivities).map(([key,CallActivity]) =>  {
+        let callActivityId = CallActivity.id;
+        fetch(`https://cerulean-marlin-wig.cyclic.app/activities/${callActivityId}`,{
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json"
+          },
+          method: "PATCH",	
+          body: JSON.stringify({
+            'is_archived': true
+          })
+        })
+        // .then((res) => res.json())
+        .then((json) => {
+        });
+      });
+    });
     navigate(`/`);
   }
 
   const unArchiveAllActivities = () => {
-    // Object.entries(callActivities).map(([date,CallActivity]) =>  {
-    //   let callActivityId = CallActivity.id;
-    //   fetch(`https://cerulean-marlin-wig.cyclic.app/activities/${callActivityId}`,{
-    //     headers: {
-    //       Accept: "application/json",
-    //       "Content-Type": "application/json"
-    //     },
-    //     method: "PATCH",	
-    //     body: JSON.stringify({
-    //       'is_archived': false
-    //     })
-    //   })
-    //   .then((res) => res.json())
-    //   .then((json) => {
-    //   });
-    // });
-            navigate(`/`);
+    Object.entries(callActivities).map(([date,dateCallActivities]) =>  {
+      Object.entries(dateCallActivities).map(([key,CallActivity]) =>  {
+        let callActivityId = CallActivity.id;
+        fetch(`https://cerulean-marlin-wig.cyclic.app/activities/${callActivityId}`,{
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json"
+          },
+          method: "PATCH",	
+          body: JSON.stringify({
+            'is_archived': false
+          })
+        })
+        // .then((res) => res.json())
+        .then((json) => {
+        });
+      });
+    });  
+    navigate(`/`);
   }
 
   return (
@@ -78,7 +82,7 @@ const ActivityFeed = () => {
                   <div className='text-center p-4'>{moment(date).format("MMMM, DD YYYY")}</div>
                   {Object.entries(dateCallActivities).map(([key,dateCallActivity]) => (
                     !dateCallActivity.is_archived ? 
-                    <ActivityFeedCard callActivity={dateCallActivity}></ActivityFeedCard> : ''
+                    <ActivityFeedCard callActivity={dateCallActivity} key={key}></ActivityFeedCard> : ''
                   
                 ))}
                 </div>
@@ -92,7 +96,7 @@ const ActivityFeed = () => {
                 <div key={date}>
                   <div className='text-center p-4'>{moment(date).format("MMMM, DD YYYY")}</div>
                   {Object.entries(dateCallActivities).map(([key,dateCallActivity]) => (                      
-                    <ActivityFeedCard callActivity={dateCallActivity}></ActivityFeedCard>
+                    <ActivityFeedCard callActivity={dateCallActivity} key={key}></ActivityFeedCard>
                   ))}
                 </div>
             ))}
@@ -109,7 +113,7 @@ const ActivityFeed = () => {
                     <div className='text-center p-4'>{moment(date).format("MMMM, DD YYYY")}</div>
                     {Object.entries(dateCallActivities).map(([key,dateCallActivity]) => (
                       dateCallActivity.is_archived ? 
-                      <ActivityFeedCard callActivity={dateCallActivity}></ActivityFeedCard> : ''
+                      <ActivityFeedCard callActivity={dateCallActivity} key={key}></ActivityFeedCard> : ''
                     
                   ))}
                   </div>
