@@ -25,42 +25,42 @@ const ActivityFeed = () => {
   }, []);
   
   const archiveAllActivities  = () => {
-    Object.entries(callActivities).map(([date,CallActivity]) =>  {
-      let callActivityId = CallActivity.id;
-      fetch(`https://cerulean-marlin-wig.cyclic.app/activities/${callActivityId}`,{
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json"
-        },
-        method: "PATCH",	
-        body: JSON.stringify({
-          'is_archived': true
-        })
-      })
-      .then((res) => res.json())
-      .then((json) => {
-      });
-    });
+    // Object.entries(callActivities).map(([date,CallActivity]) =>  {
+    //   let callActivityId = CallActivity.id;
+    //   fetch(`https://cerulean-marlin-wig.cyclic.app/activities/${callActivityId}`,{
+    //     headers: {
+    //       Accept: "application/json",
+    //       "Content-Type": "application/json"
+    //     },
+    //     method: "PATCH",	
+    //     body: JSON.stringify({
+    //       'is_archived': true
+    //     })
+    //   })
+    //   .then((res) => res.json())
+    //   .then((json) => {
+    //   });
+    // });
     navigate(`/`);
   }
 
   const unArchiveAllActivities = () => {
-    Object.entries(callActivities).map(([date,CallActivity]) =>  {
-      let callActivityId = CallActivity.id;
-      fetch(`https://cerulean-marlin-wig.cyclic.app/activities/${callActivityId}`,{
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json"
-        },
-        method: "PATCH",	
-        body: JSON.stringify({
-          'is_archived': false
-        })
-      })
-      .then((res) => res.json())
-      .then((json) => {
-      });
-    });
+    // Object.entries(callActivities).map(([date,CallActivity]) =>  {
+    //   let callActivityId = CallActivity.id;
+    //   fetch(`https://cerulean-marlin-wig.cyclic.app/activities/${callActivityId}`,{
+    //     headers: {
+    //       Accept: "application/json",
+    //       "Content-Type": "application/json"
+    //     },
+    //     method: "PATCH",	
+    //     body: JSON.stringify({
+    //       'is_archived': false
+    //     })
+    //   })
+    //   .then((res) => res.json())
+    //   .then((json) => {
+    //   });
+    // });
             navigate(`/`);
   }
 
