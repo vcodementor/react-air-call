@@ -25,8 +25,8 @@ const ActivityFeed = () => {
   }, []);
   
   const archiveAllActivities  = () => {
-    Object.entries(callActivities).map(([date,dateCallActivities]) =>  {
-      Object.entries(dateCallActivities).map(([key,CallActivity]) =>  {
+    Object.entries(callActivities).forEach(([date,dateCallActivities]) =>  {
+      Object.entries(dateCallActivities).forEach(([key,CallActivity]) =>  {
         let callActivityId = CallActivity.id;
         fetch(`https://cerulean-marlin-wig.cyclic.app/activities/${callActivityId}`,{
           headers: {
@@ -47,8 +47,8 @@ const ActivityFeed = () => {
   }
 
   const unArchiveAllActivities = () => {
-    Object.entries(callActivities).map(([date,dateCallActivities]) =>  {
-      Object.entries(dateCallActivities).map(([key,CallActivity]) =>  {
+    Object.entries(callActivities).forEach(([date,dateCallActivities]) =>  {
+      Object.entries(dateCallActivities).forEach(([key,CallActivity]) =>  {
         let callActivityId = CallActivity.id;
         fetch(`https://cerulean-marlin-wig.cyclic.app/activities/${callActivityId}`,{
           headers: {
