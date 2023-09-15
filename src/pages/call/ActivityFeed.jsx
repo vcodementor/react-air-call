@@ -39,9 +39,9 @@ const ActivityFeed = () => {
       })
       .then((res) => res.json())
       .then((json) => {
-        navigate(`/`);
       });
     });
+    navigate(`/`);
   }
 
   const unArchiveAllActivities = () => {
@@ -59,9 +59,9 @@ const ActivityFeed = () => {
       })
       .then((res) => res.json())
       .then((json) => {
-        navigate(`/`);
       });
-  });
+    });
+            navigate(`/`);
   }
 
   return (
@@ -87,10 +87,6 @@ const ActivityFeed = () => {
 
         </Tab>
         <Tab label="All Call">
-          <button className="sticky top-24 w-full bg-red-500 hover:bg-red-400 text-white font-bold py-2 px-4 border-b-4 border-red-700 hover:border-red-500 rounded text-center"
-            onClick={() => unArchiveAllActivities()}>
-            UnArchive All
-          </button> 
           <div className='container-view'>
           { Object.entries(callActivities).map(([date,dateCallActivities]) =>  (
                 <div key={date}>
@@ -102,7 +98,26 @@ const ActivityFeed = () => {
             ))}
           </div>
         </Tab>
+        <Tab label="Archive Call">
+          <button className="sticky top-24 w-full bg-red-500 hover:bg-red-400 text-white font-bold py-2 px-4 border-b-4 border-red-700 hover:border-red-500 rounded text-center"
+              onClick={() => unArchiveAllActivities()}>
+              UnArchive All
+          </button> 
+          <div className='container-view'>
+              { Object.entries(callActivities).map(([date,dateCallActivities]) =>  (
+                  <div key={date}>
+                    <div className='text-center p-4'>{moment(date).format("MMMM, DD YYYY")}</div>
+                    {Object.entries(dateCallActivities).map(([key,dateCallActivity]) => (
+                      dateCallActivity.is_archived ? 
+                      <ActivityFeedCard callActivity={dateCallActivity}></ActivityFeedCard> : ''
+                    
+                  ))}
+                  </div>
+              ))}
+          </div>
+        </Tab>
       </Tabs>
+     
     </div>
   );
 };
